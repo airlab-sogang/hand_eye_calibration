@@ -1,0 +1,31 @@
+<launch>
+  <!-- (start your robot's MoveIt! stack, e.g. include its moveit_planning_execution.launch) -->
+  <!-- (start your tracking system's ROS driver) -->
+  <arg name="eye_on_hand" doc="true or false"/>
+  <arg if="$(arg eye_on_hand)" name="camera_name" value="camera2"/>
+  <arg unless="$(arg eye_on_hand)" name="camera_name" value="camera1"/>
+
+  <!-- Publish marker frame -->
+  <include file="$(find aruco_ros)/launch/single.launch">
+    <arg if="$(arg eye_on_hand)" name="camera_name" value="camera2"/>
+    <arg unless="$(arg eye_on_hand)" name="camera_name" value="camera1"/>
+  </include>
+
+  <!-- Execute a camera calibration -->
+  <include file="$(find easy_handeye)/launch/calibrate.launch">
+    <arg name="eye_on_hand" value="$(arg eye_on_hand)"/>
+    <arg if="$(arg eye_on_hand)" name="namespace_prefix" value="my_eoh_calib"/>
+    <arg unless="$(arg eye_on_hand)" name="namespace_prefix" value="my_eob_calib"/>
+
+    <!-- fill in the following parameters according to your robot's published tf frames -->
+    <arg name="robot_base_frame" value="robot_base_footprint"/>
+    <arg name="robot_effector_frame" value="graps_link"/>
+
+    <!-- fill in the following parameters according to your tracking system's published tf frames -->
+    <arg name="tracking_base_frame" value="$(arg camera_name)_color_optical_frame"/>
+    <arg name="tracking_marker_frame" value="aruco_marker_frame"/>
+ 
+    <!-- auto moving -->
+    <arg name="freehand_robot_movement" value="true" />
+  </include>
+</launch>
