@@ -40,7 +40,7 @@ source devel/setup.bash
  ```
 Set **markerId** and **markerSize** to the custormized value.
 
-Then execute your camera launch file and aruco detection launch file.
+Then execute your camera and aruco detection launch files.
 ```
 roslaunch realsense2_camera rs_multiple_devices.launch serial_no_camera1:={serial number} serial_no_camera2:={serial number}
 roslaunch aruco_ros single.launch camera:={camera_name}
