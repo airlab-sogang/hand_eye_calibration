@@ -13,7 +13,21 @@ Tested environment : Ubuntu 20.04 & ROS1 noetic
   * Eye-on-hand
 ---
 ## Getting started
-
+* Clone this repository into your catkin workspace.
+```
+mkdir -p ~/caktin_ws/src
+git clone https://github.com/airlab-sogang/hand_eye_calibration.git
+```
+* Install dependencies.
+```
+cd ..
+rosdep install -iyr --from-paths src
+```
+* Build and source it.
+```
+catkin_make
+source devel/setup.bash
+```
 ---
 ## Aruco marker detection
 * Aruco marker customizer : https://chev.me/arucogen/
