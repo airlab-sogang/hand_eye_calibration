@@ -12,6 +12,9 @@ Tested environment : Ubuntu 20.04 & ROS1 noetic
   * Eye-on-base
   * Eye-on-hand
 ---
+## Getting started
+
+---
 ## Aruco marker detection
 * Aruco marker customizer : https://chev.me/arucogen/
   * You should set **Dictionary** to **Original ArUco**
